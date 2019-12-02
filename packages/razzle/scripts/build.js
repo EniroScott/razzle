@@ -75,7 +75,10 @@ function build(previousFileSizes) {
   try {
     razzle = require(paths.appRazzleConfig);
     /* eslint-disable no-empty */
-  } catch (e) {}
+  } catch (e) {
+      console.error(e);
+  }
+
   /* eslint-enable */
 
   if (razzle.clearConsole === false || !!razzle.host || !!razzle.port) {
@@ -90,7 +93,8 @@ ${razzle.port !== '3000' && `PORT=${razzle.port}`}
   // Create our production webpack configurations and pass in razzle options.
   let clientConfig = createConfig('web', 'prod', razzle, webpack);
   let serverConfig = createConfig('node', 'prod', razzle, webpack);
-
+  console.log(clientConfig);
+  console.log(serverConfig);
   process.noDeprecation = true; // turns off that loadQuery clutter.
 
   console.log('Creating an optimized production build...');
